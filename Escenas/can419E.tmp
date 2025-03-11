@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://8utnux8cm1gm"]
+
+[ext_resource type="PackedScene" uid="uid://ct7ngeddtnyw0" path="res://Escenas/Player1.tscn" id="1_aynv1"]
+[ext_resource type="Script" path="res://Scripts/pong.gd" id="1_fxtk6"]
+[ext_resource type="Texture2D" uid="uid://d1g41ggpn0px5" path="res://Assests/Mapas/wall-horizontal.png" id="1_sow0m"]
+[ext_resource type="Texture2D" uid="uid://q7fuaw0a8s3" path="res://Assests/Mapas/wall-vertical.png" id="2_2r7b7"]
+[ext_resource type="PackedScene" uid="uid://dhmtupatb56u" path="res://Escenas/player2.tscn" id="2_ccio3"]
+[ext_resource type="PackedScene" uid="uid://rgu72c5fdqfj" path="res://Escenas/ball.tscn" id="3_vimy6"]
+[ext_resource type="PackedScene" uid="uid://i1hosm4uvlr1" path="res://Escenas/ia.tscn" id="4_7lpjo"]
+[ext_resource type="Texture2D" uid="uid://5qroumj8e178" path="res://Assests/Mapas/middle-line.png" id="8_lbwuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgep"]
+size = Vector2(1188, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egf0y"]
+size = Vector2(20, 630)
+
+[node name="CanchaPong" type="Node2D"]
+script = ExtResource("1_fxtk6")
+
+[node name="Techo" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
+scale = Vector2(1.079, 1.079)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Techo"]
+position = Vector2(0, -2)
+texture = ExtResource("1_sow0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Techo"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5xgep")
+
+[node name="Piso" type="StaticBody2D" parent="."]
+position = Vector2(640, 720)
+scale = Vector2(1.079, 1.079)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Piso"]
+position = Vector2(0, -2)
+texture = ExtResource("1_sow0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_5xgep")
+
+[node name="ParedIzq" type="Area2D" parent="."]
+position = Vector2(0, 360)
+scale = Vector2(1.19, 1.19)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedIzq"]
+position = Vector2(0, -2)
+texture = ExtResource("2_2r7b7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzq"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_egf0y")
+
+[node name="ParedDer" type="Area2D" parent="."]
+position = Vector2(1280, 360)
+scale = Vector2(1.19, 1.19)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedDer"]
+position = Vector2(0, -2)
+texture = ExtResource("2_2r7b7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDer"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_egf0y")
+
+[node name="Player" parent="." instance=ExtResource("1_aynv1")]
+
+[node name="Player2" parent="." instance=ExtResource("2_ccio3")]
+visible = false
+
+[node name="Ball" parent="." instance=ExtResource("3_vimy6")]
+
+[node name="Ia" parent="." instance=ExtResource("4_7lpjo")]
+
+[node name="Middle-line" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("8_lbwuv")
+
+[node name="PlayerScore2" type="Label" parent="."]
+offset_left = 640.0
+offset_top = 11.0
+offset_right = 696.0
+offset_bottom = 71.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerScore" type="Label" parent="."]
+offset_left = 584.0
+offset_top = 11.0
+offset_right = 640.0
+offset_bottom = 71.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="ParedIzq" to="." method="_on_pared_izq_body_entered"]
+[connection signal="body_entered" from="ParedDer" to="." method="_on_pared_der_body_entered"]
