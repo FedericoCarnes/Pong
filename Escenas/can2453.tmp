@@ -8,20 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://rgu72c5fdqfj" path="res://Escenas/ball.tscn" id="3_vimy6"]
 [ext_resource type="PackedScene" uid="uid://i1hosm4uvlr1" path="res://Escenas/ia.tscn" id="4_7lpjo"]
 [ext_resource type="Texture2D" uid="uid://5qroumj8e178" path="res://Assests/Mapas/middle-line.png" id="8_lbwuv"]
+[ext_resource type="Script" path="res://Scripts/menu_ganar.gd" id="9_cthnt"]
 [ext_resource type="PackedScene" uid="uid://coygl0j1bj3r3" path="res://Escenas/PausaMenu.tscn" id="9_jid3b"]
 [ext_resource type="AudioStream" uid="uid://enlla8vsww8d" path="res://Assests/Otros/stranger-things-124008.mp3" id="10_6mfsb"]
 [ext_resource type="Texture2D" uid="uid://c7a0oubkrh28u" path="res://Assests/Otros/play.png" id="10_gu8k5"]
-[ext_resource type="Texture2D" uid="uid://dqbacalm1nrwj" path="res://Assests/Mapas/Mapa.jpg" id="11_wyetb"]
+[ext_resource type="Texture2D" uid="uid://dqbacalm1nrwj" path="res://Assests/Otros/Mapa.jpg" id="11_wyetb"]
 [ext_resource type="Texture2D" uid="uid://d1f2ibtxt3lis" path="res://Assests/Otros/pausa.png" id="11_yrhmp"]
-
-[sub_resource type="GDScript" id="GDScript_0pb8k"]
-script/source = "extends CanvasLayer
-
-
-func _on_button_pressed() -> void:
-	visible = false
-	get_tree().paused = false
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgep"]
 size = Vector2(1188, 20)
@@ -31,42 +23,6 @@ size = Vector2(20, 630)
 
 [node name="CanchaPong" type="Node2D"]
 script = ExtResource("1_fxtk6")
-
-[node name="MenuGanar" type="CanvasLayer" parent="."]
-process_mode = 3
-visible = false
-script = SubResource("GDScript_0pb8k")
-
-[node name="ColorRect" type="ColorRect" parent="MenuGanar"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="MenuGanar"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_right = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Button" type="Button" parent="MenuGanar"]
-offset_left = 1054.0
-offset_top = 486.0
-offset_right = 1512.0
-offset_bottom = 944.0
-scale = Vector2(0.5, 0.5)
-icon = ExtResource("10_gu8k5")
-metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -10
@@ -127,19 +83,47 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_egf0y")
 
 [node name="Player" parent="." instance=ExtResource("1_aynv1")]
-platform_on_leave = 2
-platform_floor_layers = 4294967040
 
 [node name="Player2" parent="." instance=ExtResource("2_ccio3")]
 visible = false
-platform_on_leave = 2
-platform_floor_layers = 4294967040
 
 [node name="Ball" parent="." instance=ExtResource("3_vimy6")]
 
 [node name="Ia" parent="." instance=ExtResource("4_7lpjo")]
-platform_on_leave = 2
-platform_floor_layers = 4294967040
+
+[node name="MenuGanar" type="CanvasLayer" parent="."]
+script = ExtResource("9_cthnt")
+
+[node name="ColorRect" type="ColorRect" parent="MenuGanar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="MenuGanar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="MenuGanar"]
+offset_left = 1054.0
+offset_top = 486.0
+offset_right = 1512.0
+offset_bottom = 944.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("10_gu8k5")
+metadata/_edit_use_anchors_ = true
 
 [node name="Middle-line" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
@@ -180,7 +164,7 @@ icon = ExtResource("11_yrhmp")
 stream = ExtResource("10_6mfsb")
 volume_db = -30.0
 
-[connection signal="pressed" from="MenuGanar/Button" to="MenuGanar" method="_on_button_pressed"]
 [connection signal="body_entered" from="ParedIzq" to="." method="_on_pared_izq_body_entered"]
 [connection signal="body_entered" from="ParedDer" to="." method="_on_pared_der_body_entered"]
+[connection signal="pressed" from="MenuGanar/Button" to="MenuGanar" method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="CanvasLayer" method="_on_button_pressed"]

@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/player_1.gd" id="1_1gr7s"]
 [ext_resource type="Texture2D" uid="uid://btxbtcrv0jrux" path="res://Assests/Jugadores/Jugador.png" id="1_m0s51"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc1h2"]
-size = Vector2(14.3998, 45.6294)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ca87i"]
+radius = 7.20633
+height = 49.0137
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(101, 375)
+position = Vector2(100, 375)
 scale = Vector2(3, 3)
 script = ExtResource("1_1gr7s")
 metadata/_edit_group_ = true
@@ -15,8 +16,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.535225, -0.502846)
 rotation = -0.0095964
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_wc1h2")
+shape = SubResource("CapsuleShape2D_ca87i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -6)

@@ -18,3 +18,6 @@ func _physics_process(delta):
 	velocity *= speed
 	
 	move_and_collide(velocity * delta)
+	
+	if position.x - 100 > 5 && position.x - 100 < -5:
+		position.x = 100

@@ -41,6 +41,10 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	else:
 		get_parent().get_node("Music").stop()
 
+func _on_reset_pressed() -> void:
+	pausa()
+	get_tree().reload_current_scene()
+
 func pausa():
 	get_tree().paused = not get_tree().paused
 	$ColorRect.visible = not $ColorRect.visible
@@ -50,7 +54,3 @@ func pausa():
 		$VBoxContainer3.visible = not $VBoxContainer3.visible
 	else:
 		$VBoxContainer.visible = not $VBoxContainer.visible
-
-
-func _on_reset_pressed() -> void:
-	get_tree().reload_current_scene()

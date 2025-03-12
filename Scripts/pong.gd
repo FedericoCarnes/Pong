@@ -5,6 +5,8 @@ var puntaje1 = -2
 var puntaje2 = -2
 var music = Autoload.music
 var dificulty = Autoload.dificulty
+var puntajeMax = 5
+
 
 func _ready():
 	print (music)
@@ -35,14 +37,39 @@ func actualizarDificultad():
 
 func _on_pared_izq_body_entered(body: Node2D) -> void:
 	puntaje1 += 1
-	$PlayerScore.text = str(puntaje1)
-	reset()
+	if puntaje1 >= puntajeMax:
+		ganar()
+	else:
+		reset()
+		$PlayerScore2.text = str(puntaje1)
 
 
 func _on_pared_der_body_entered(body: Node2D) -> void:
 	puntaje2 += 1
+	if puntaje2 >= puntajeMax:
+		ganar()
+	else:
+		reset()
+		$PlayerScore2.text = str(puntaje2)
+
+func ganar():
+	var aux
+	if puntaje1 > puntaje2:
+		if $Ia.visible:
+			aux = "Ganador ia \n" + str(puntaje1) + "-" + str(puntaje2)
+		else:
+			aux = "Ganador player 2 \n" + str(puntaje1) + "-" + str(puntaje2)
+	else:
+		aux = "Ganador player 1 \n" + str(puntaje1) + "-" + str(puntaje2)
+	$MenuGanar.visible = true
+	$MenuGanar/Label.text = str(aux)
+	puntaje1 = 0
+	puntaje2 = 0
+	$PlayerScore2.text = str(puntaje1)
 	$PlayerScore2.text = str(puntaje2)
 	reset()
+	get_tree().paused = true
+
 
 func reset():
 	$Ball.call("inicializar")
