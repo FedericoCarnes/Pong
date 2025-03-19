@@ -8,8 +8,10 @@ radius = 7.20633
 height = 49.0137
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(100, 375)
+position = Vector2(100, 376)
 scale = Vector2(3, 3)
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_1gr7s")
 metadata/_edit_group_ = true
 

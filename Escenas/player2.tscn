@@ -9,15 +9,17 @@ size = Vector2(13.9962, 45.6646)
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1180, 360)
 scale = Vector2(3, 3)
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_er5ii")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.336334, -0.144257)
 rotation = -0.0095964
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_c8p1x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, -6)
+position = Vector2(-3.66667, 5)
+rotation = 3.14159
 texture = ExtResource("1_j70ye")
