@@ -10,7 +10,3 @@ func _physics_process(delta: float) -> void:
 	# Asignar velocidad en Y y mover
 	velocity.y = direction.y * speed
 	move_and_slide()
-	if abs(position.y - 100) > -10:
-		position.x = 100
-	elif abs(position.y - 100) < 10:
-		position.x = 100
