@@ -12,10 +12,9 @@ func inicializar():
 	else:
 		velocity.x = -1
 	if randi() % 2 == 0:
-		if randi() % 2 == 0:
-			velocity.y = 1
-		else:
-			velocity.y = -1
+		velocity.y = 1
+	else:
+		velocity.y = -1
 	velocity *= speed
 
 func _physics_process(delta: float):

@@ -126,15 +126,6 @@ texture = ExtResource("2_2r7b7")
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_egf0y")
 
-[node name="Player" parent="." instance=ExtResource("1_aynv1")]
-platform_on_leave = 2
-platform_floor_layers = 4294967040
-
-[node name="Player2" parent="." instance=ExtResource("2_ccio3")]
-visible = false
-platform_on_leave = 2
-platform_floor_layers = 4294967040
-
 [node name="Ball" parent="." instance=ExtResource("3_vimy6")]
 
 [node name="Ia" parent="." instance=ExtResource("4_7lpjo")]
@@ -179,6 +170,11 @@ icon = ExtResource("11_yrhmp")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_6mfsb")
 volume_db = -30.0
+
+[node name="Player" parent="." instance=ExtResource("1_aynv1")]
+
+[node name="Player2" parent="." instance=ExtResource("2_ccio3")]
+visible = false
 
 [connection signal="pressed" from="MenuGanar/Button" to="MenuGanar" method="_on_button_pressed"]
 [connection signal="body_entered" from="ParedIzq" to="." method="_on_pared_izq_body_entered"]

@@ -10,6 +10,8 @@ radius = 14.5344
 position = Vector2(640, 360)
 scale = Vector2(2, 2)
 up_direction = Vector2(1, -3.125e-06)
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_f71rs")
 metadata/_edit_group_ = true
 
